@@ -63,7 +63,7 @@ export default function HomeBento() {
       </Link>
 
       <Link to="/about" className="bento__card bento__card--about">
-        <CardHead Icon={User} title="About" desc="IT support, user-centered design, and people-first service." />
+        <CardHead Icon={User} title="About" desc="My background, people-first approach, and video introduction." />
         <div className="bento__media bento__fan" aria-hidden="true">
           {PHOTOS.map((index) => (
             <span key={index} className="bento__photo" style={{ ['--i' as string]: index } as CSSProperties}>
@@ -121,12 +121,12 @@ export default function HomeBento() {
       </Link>
 
       <Link to="/testimonials" className="bento__card bento__card--videos">
-        <CardHead Icon={VideoCamera} title="Videos" desc="Meet me and hear from clients through video." />
+        <CardHead Icon={VideoCamera} title="Testimonials" desc="Client feedback, shared in their own words." />
         <div className="bento__media bento__reviews" data-soon="true" aria-hidden="true">
           <div className="bento__reviews-track">
             <span className="bento__review bento__review--soon">
-              <span className="bento__review-top"><VideoCamera size={18} weight="duotone" /><b>Video introduction</b></span>
-              <span className="bento__review-role">Personal introduction and client stories.</span>
+              <span className="bento__review-top"><VideoCamera size={18} weight="duotone" /><b>Client video</b></span>
+              <span className="bento__review-role">Client stories will appear here when they’re ready.</span>
               <span className="bento__review-work">Coming soon</span>
             </span>
           </div>

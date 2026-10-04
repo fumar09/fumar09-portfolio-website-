@@ -1,6 +1,8 @@
 import { MapPin } from '@/components/slab'
 import { community, interests, workExperience } from '@/data/portfolio'
 import { profile } from '@/data/profile'
+import { introductionVideo } from '@/data/videoContent'
+import PortfolioVideoPlayer from './PortfolioVideoPlayer'
 
 export default function AboutGrid() {
   return (
@@ -10,6 +12,15 @@ export default function AboutGrid() {
         <h1 className="pgrid__title" id="about-title">People-first service. Practical problem-solving.</h1>
         <p className="pgrid__lede">{profile.hero.body}</p>
       </header>
+
+      <article className="portfolio-panel video-story__intro" aria-labelledby="about-video-title">
+        <PortfolioVideoPlayer video={introductionVideo} label="Video introduction" />
+        <div className="video-story__caption video-story__caption--intro">
+          <span className="portfolio-panel__eyebrow">Meet Connie</span>
+          <h2 id="about-video-title">A short introduction</h2>
+          <p>Get to know me, my approach to helpful technology, and the work I’m building toward.</p>
+        </div>
+      </article>
 
       <div className="portfolio-page-grid portfolio-about-grid">
         <section className="portfolio-panel portfolio-about-intro">

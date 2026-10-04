@@ -53,8 +53,8 @@ const TILES: ExploreTile[] = [
   { n: '02', label: 'Services', to: '/services', title: 'Support and user-focused design', desc: 'IT support, responsive web interfaces, and UX design for everyday users and community organizations.', Icon: Stack },
   { n: '03', label: 'Showcase', to: '/showcase', title: 'Web application development', desc: 'ACLC College of Tacloban.', Icon: GraduationCap, accent: true },
   { n: '04', label: 'Credentials', to: '/credentials', title: 'Learning, made tangible', desc: `${credentials.length} professional and technical credentials.`, Icon: Certificate },
-  { n: '05', label: 'Videos', to: '/testimonials', title: 'Introduction & testimonials', desc: 'Meet me and hear from clients through video.', Icon: VideoCamera },
-  { n: '06', label: 'About', to: '/about', title: `Hi, I’m ${profile.firstName}.`, desc: 'Based in Alcantara, Romblon, Philippines.', img: profile.avatarSrc, profile: true },
+  { n: '05', label: 'Testimonials', to: '/testimonials', title: 'Client video feedback', desc: 'Hear from the people I’ve worked with.', Icon: VideoCamera },
+  { n: '06', label: 'About', to: '/about', title: `Hi, I’m ${profile.firstName}.`, desc: 'My background, approach, and video introduction.', img: profile.avatarSrc, profile: true },
   { n: '07', label: 'Contact', to: '/contact', title: 'Get in touch', desc: 'Talk about IT support, web applications, or UI/UX design.', Icon: EnvelopeSimple },
 ]
 

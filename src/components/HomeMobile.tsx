@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Certificate, EnvelopeSimple, GraduationCap, SealCheck, Stack } from '@/components/slab'
+import { Certificate, EnvelopeSimple, GraduationCap, Quotes, SealCheck, Stack } from '@/components/slab'
 import type { Icon } from '@/components/slab'
 import { profile } from '@/data/profile'
 import { credentials, portfolioProjects } from '@/data/portfolio'
@@ -53,8 +53,9 @@ const TILES: ExploreTile[] = [
   { n: '02', label: 'Services', to: '/services', title: 'Support and user-focused design', desc: 'IT support, responsive web interfaces, and UX design for everyday users and community organizations.', Icon: Stack },
   { n: '03', label: 'Showcase', to: '/showcase', title: 'Web application development', desc: 'ACLC College of Tacloban.', Icon: GraduationCap, accent: true },
   { n: '04', label: 'Credentials', to: '/credentials', title: 'Learning, made tangible', desc: `${credentials.length} professional and technical credentials.`, Icon: Certificate },
-  { n: '05', label: 'Contact', to: '/contact', title: 'Get in touch', desc: 'Talk about IT support, web applications, or UI/UX design.', Icon: EnvelopeSimple },
+  { n: '05', label: 'Testimonials', to: '/testimonials', title: 'Client feedback', desc: 'A testimonial will be added here when it’s ready.', Icon: Quotes },
   { n: '06', label: 'About', to: '/about', title: `Hi, I’m ${profile.firstName}.`, desc: 'Based in Alcantara, Romblon, Philippines.', img: profile.avatarSrc, profile: true },
+  { n: '07', label: 'Contact', to: '/contact', title: 'Get in touch', desc: 'Talk about IT support, web applications, or UI/UX design.', Icon: EnvelopeSimple },
 ]
 
 export function HomeExplore() {

@@ -4,8 +4,8 @@ import {
   ArrowUpRight,
   Briefcase,
   Certificate,
-  EnvelopeSimple,
   FolderOpen,
+  Quotes,
   SealCheck,
   Stack,
   User,
@@ -120,13 +120,17 @@ export default function HomeBento() {
         </ul>
       </Link>
 
-      <Link to="/contact" className="bento__card bento__card--contact">
-        <CardHead Icon={EnvelopeSimple} title="Contact" desc="Get in touch about IT support, web applications, or UI/UX design." />
-        <span className="bento__media bento__contact-card">
-          <span className="bento__contact-label">Ready to connect?</span>
-          <strong>Let’s talk.</strong>
-          <span className="bento__contact-hint">View email, phone, and social links.</span>
-        </span>
+      <Link to="/testimonials" className="bento__card bento__card--quotes">
+        <CardHead Icon={Quotes} title="Testimonials" desc="A space for feedback from people I’ve worked with." />
+        <div className="bento__media bento__reviews" data-soon="true" aria-hidden="true">
+          <div className="bento__reviews-track">
+            <span className="bento__review bento__review--soon">
+              <span className="bento__review-top"><Quotes size={18} weight="duotone" /><b>Client feedback</b></span>
+              <span className="bento__review-role">A testimonial will appear here when it’s ready.</span>
+              <span className="bento__review-work">In preparation</span>
+            </span>
+          </div>
+        </div>
       </Link>
     </nav>
   )

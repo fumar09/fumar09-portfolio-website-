@@ -4,12 +4,11 @@ import {
   ArrowUpRight,
   Briefcase,
   Certificate,
+  EnvelopeSimple,
   FolderOpen,
-  Quotes,
   SealCheck,
   Stack,
   User,
-  VideoCamera,
   Wrench,
   type Icon,
 } from '@/components/slab'
@@ -121,17 +120,13 @@ export default function HomeBento() {
         </ul>
       </Link>
 
-      <Link to="/testimonials" className="bento__card bento__card--quotes">
-        <CardHead Icon={Quotes} title="Testimonials" desc="Client video testimonials will be added here soon." />
-        <div className="bento__media bento__reviews" data-soon="true" aria-hidden="true">
-          <div className="bento__reviews-track">
-            <span className="bento__review bento__review--soon">
-              <span className="bento__review-top"><VideoCamera size={18} weight="duotone" /><b>Client videos</b></span>
-              <span className="bento__review-role">Video testimonials are coming soon.</span>
-              <span className="bento__review-work">Coming soon</span>
-            </span>
-          </div>
-        </div>
+      <Link to="/contact" className="bento__card bento__card--contact">
+        <CardHead Icon={EnvelopeSimple} title="Contact" desc="Get in touch about IT support, web applications, or UI/UX design." />
+        <span className="bento__media bento__contact-card">
+          <span className="bento__contact-label">Ready to connect?</span>
+          <strong>Let’s talk.</strong>
+          <span className="bento__contact-hint">View email, phone, and social links.</span>
+        </span>
       </Link>
     </nav>
   )

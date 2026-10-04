@@ -1,6 +1,6 @@
 import { StrictMode, lazy } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import App from './App'
 import Home from '@/components/Home'
 import NotFound from '@/components/NotFound'
@@ -11,7 +11,6 @@ const ProjectsView = lazy(() => import('@/views/ProjectsView'))
 const ServicesView = lazy(() => import('@/views/ServicesView'))
 const ShowcaseView = lazy(() => import('@/views/ShowcaseView'))
 const CredentialsGrid = lazy(() => import('@/components/CredentialsGrid'))
-const TestimonialsGrid = lazy(() => import('@/components/TestimonialsGrid'))
 const AboutGrid = lazy(() => import('@/components/AboutGrid'))
 const ContactGrid = lazy(() => import('@/components/ContactGrid'))
 import './styles/tokens.css'
@@ -27,12 +26,10 @@ import './styles/bento.css'
 import './styles/projects-grid.css'
 import './styles/services-grid.css'
 import './styles/showcase.css'
-import './styles/testimonials-grid.css'
 import './styles/about-grid.css'
 import './styles/contact-grid.css'
 import './styles/boot.css'
 import './styles/credentials.css'
-import './styles/testimonials.css'
 import './styles/mobile-app.css'
 import './styles/profile-images.css'
 import './styles/a11y.css'
@@ -54,13 +51,13 @@ createRoot(container).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
+        <Route path="/testimonials" element={<Navigate to="/contact" replace />} />
         <Route element={<App />}>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<ProjectsView />} />
           <Route path="/services" element={<ServicesView />} />
           <Route path="/showcase" element={<ShowcaseView />} />
           <Route path="/credentials" element={<CredentialsGrid />} />
-          <Route path="/testimonials" element={<TestimonialsGrid />} />
           <Route path="/about" element={<AboutGrid />} />
           <Route path="/contact" element={<ContactGrid />} />
         </Route>

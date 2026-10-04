@@ -26,9 +26,6 @@
 
 
 
-    <link rel="preload" as="image" href="/images/profile.jpg" fetchpriority="high" media="(min-width: 1100px)" />
-
-
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Connie Frances Fumar" />
     <meta property="og:locale" content="en_PH" />
@@ -58,6 +55,15 @@
         } catch (e) {
           document.documentElement.dataset.theme = 'light';
         }
+        var portrait = document.createElement('link');
+        portrait.rel = 'preload';
+        portrait.as = 'image';
+        portrait.fetchPriority = 'high';
+        portrait.media = '(min-width: 1100px)';
+        portrait.href = document.documentElement.dataset.theme === 'dark'
+          ? '/images/profile-dark.jpg'
+          : '/images/profile-light.jpg';
+        document.head.appendChild(portrait);
         if (document.documentElement.dataset.theme === 'dark') {
           var bar = document.querySelector('meta[name="theme-color"]');
           if (bar) bar.setAttribute('content', '#070B14');

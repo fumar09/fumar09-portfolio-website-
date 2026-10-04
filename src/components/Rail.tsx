@@ -8,7 +8,6 @@ import {
   FolderIcon,
   StackIcon,
   CupIcon,
-  StarIcon,
   UserIcon,
   MessageIcon,
 } from './RailIcons'
@@ -32,7 +31,6 @@ export const RAIL_LINKS = [
   { label: 'Projects', to: '/projects', Icon: FolderIcon },
   { label: 'Services', to: '/services', Icon: StackIcon },
   { label: 'Showcase', to: '/showcase', Icon: CupIcon },
-  { label: 'Testimonials', to: '/testimonials', Icon: StarIcon },
   { label: 'About', to: '/about', Icon: UserIcon },
   { label: 'Contact', to: '/contact', Icon: MessageIcon },
 ] as const
@@ -61,36 +59,21 @@ export default function Rail() {
 
         <div className="rail__actions">
           <ul className="rail__socials" role="list" aria-label="Social profiles">
-          {profile.socials.map(({ label, href, iconPath, status }) => (
+          {profile.socials.map(({ label, href, iconPath }) => (
             <li key={label}>
-              {href ? (
-                <a
-                  className="rail__social"
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                >
-                  <span
-                    className="rail__social-icon"
-                    style={{ ['--icon-url' as string]: `url('${iconPath}')` }}
-                    aria-hidden="true"
-                  />
-                </a>
-              ) : (
+              <a
+                className="rail__social"
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+              >
                 <span
-                  className="rail__social rail__social--soon"
-                  role="img"
-                  aria-label={`${label}, ${status ?? 'Coming soon'}`}
-                  title={`${label}, ${status ?? 'Coming soon'}`}
-                >
-                  <span
-                    className="rail__social-icon"
-                    style={{ ['--icon-url' as string]: `url('${iconPath}')` }}
-                    aria-hidden="true"
-                  />
-                </span>
-              )}
+                  className="rail__social-icon"
+                  style={{ ['--icon-url' as string]: `url('${iconPath}')` }}
+                  aria-hidden="true"
+                />
+              </a>
               </li>
             ))}
           </ul>

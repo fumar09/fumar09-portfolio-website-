@@ -2,9 +2,8 @@ import { Briefcase, SealCheck, UsersThree, type Icon } from '@/components/slab'
 
 export type SocialLink = {
   label: string
-  href?: string
+  href: string
   iconPath: string
-  status?: string
 }
 
 export type Stat = { value: string; label: string; Icon: Icon }
@@ -57,6 +56,5 @@ export const profile: Profile = {
   socials: [
     { label: 'Facebook profile', href: 'https://web.facebook.com/itsyourdawgcashyy/', iconPath: '/icons/facebook.svg' },
     { label: 'Instagram profile', href: 'https://www.instagram.com/itsyourcasheny/', iconPath: '/icons/instagram.svg' },
-    { label: 'LinkedIn profile', iconPath: '/icons/linkedin.svg', status: 'Coming soon' },
   ],
 }

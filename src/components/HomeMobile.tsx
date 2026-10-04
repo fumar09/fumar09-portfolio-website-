@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { CaretRight, Certificate, GraduationCap, Play, SealCheck, Stack, VideoCamera } from '@/components/slab'
+import { Certificate, EnvelopeSimple, GraduationCap, SealCheck, Stack } from '@/components/slab'
 import type { Icon } from '@/components/slab'
 import { profile } from '@/data/profile'
 import { credentials, portfolioProjects } from '@/data/portfolio'
@@ -53,7 +53,7 @@ const TILES: ExploreTile[] = [
   { n: '02', label: 'Services', to: '/services', title: 'Support and user-focused design', desc: 'IT support, responsive web interfaces, and UX design for everyday users and community organizations.', Icon: Stack },
   { n: '03', label: 'Showcase', to: '/showcase', title: 'Web application development', desc: 'ACLC College of Tacloban.', Icon: GraduationCap, accent: true },
   { n: '04', label: 'Credentials', to: '/credentials', title: 'Learning, made tangible', desc: `${credentials.length} professional and technical credentials.`, Icon: Certificate },
-  { n: '05', label: 'Testimonials', to: '/testimonials', title: 'Client video testimonials', desc: 'Coming soon.', Icon: VideoCamera },
+  { n: '05', label: 'Contact', to: '/contact', title: 'Get in touch', desc: 'Talk about IT support, web applications, or UI/UX design.', Icon: EnvelopeSimple },
   { n: '06', label: 'About', to: '/about', title: `Hi, I’m ${profile.firstName}.`, desc: 'Based in Alcantara, Romblon, Philippines.', img: profile.avatarSrc, profile: true },
 ]
 
@@ -85,24 +85,6 @@ export function HomeExplore() {
         })}
       </ul>
 
-      <div className="hsec">
-        <h2 className="hsec__title">
-          <Link to="/testimonials" className="hsec__link">
-            What clients say
-            <CaretRight size={16} weight="bold" aria-hidden="true" />
-          </Link>
-        </h2>
-      </div>
-      <Link to="/testimonials" className="hproof" aria-label="Client video testimonials are coming soon">
-        <span className="hproof__stage hproof__stage--soon">
-          <span className="hproof__play" aria-hidden="true"><Play size={20} weight="fill" /></span>
-          <span className="hproof__dur" aria-hidden="true">Coming soon</span>
-        </span>
-        <span className="hproof__copy">
-          <span className="hproof__title">Client video testimonials will be added here soon.</span>
-          <span className="hproof__meta">Video testimonials</span>
-        </span>
-      </Link>
     </>
   )
 }

@@ -122,15 +122,10 @@ export default function IntroOverlay() {
       const IGNITE = IGNITE_MS * k, RUN = RUN_MS * k, LOCK = LOCK_MS * k, FLY = FLY_MS * k
 
       const target = document.querySelector<HTMLElement>('.home__title')
-      const t = target?.getBoundingClientRect()
-
-
-      const width = t?.width ?? Math.min(760, window.innerWidth * 0.86)
-      title.style.width = `${width}px`
-      canvas.style.width = `${width}px`
-      canvas.style.height = `${CANVAS_H}px`
-
+      const targetRect = target?.getBoundingClientRect()
       const wordEls = Array.from(title.querySelectorAll<HTMLElement>('.boot__word'))
+      title.style.flexWrap = 'nowrap'
+      title.style.width = 'max-content'
       const probe = document.createElement('span')
       probe.className = 'boot__word'
       probe.textContent = ' '
@@ -139,8 +134,13 @@ export default function IntroOverlay() {
       probe.remove()
 
       const inked = wordEls.reduce((sum, el) => sum + el.offsetWidth, 0)
-      const fits = inked + (wordEls.length - 1) * space <= width + 0.5
-      title.style.columnGap = `${fits ? Math.max(0, (width - inked) / (wordEls.length - 1)) : space}px`
+      const phraseWidth = inked + (wordEls.length - 1) * space
+      const targetLineWidth = target?.querySelector<HTMLElement>('.home__line')?.getBoundingClientRect().width
+      const width = Math.max(phraseWidth, targetLineWidth ?? 0)
+      title.style.width = `${width}px`
+      title.style.columnGap = `${Math.max(space, (width - inked) / (wordEls.length - 1))}px`
+      canvas.style.width = `${width}px`
+      canvas.style.height = `${CANVAS_H}px`
 
       const height = title.offsetHeight
       const scale = Math.min((window.innerWidth * 0.86) / width, 2.6)
@@ -320,12 +320,12 @@ export default function IntroOverlay() {
         ],
         { duration: 420, easing: EASE_OUT },
       )
-      if (t) {
+      if (targetRect) {
         play(
           title,
           [
             { transform: restTransform },
-            { transform: `translate(${t.left}px, ${t.top}px) scale(1)` },
+            { transform: `translate(${targetRect.left}px, ${targetRect.top}px) scale(1)` },
           ],
           { duration: FLY, easing: EASE_CAMERA },
         )
@@ -363,11 +363,11 @@ export default function IntroOverlay() {
             const sourceRect = wordInner.getBoundingClientRect()
             const deltaX =
               destinationRect.left -
-              t.left -
+              targetRect.left -
               (sourceRect.left - titleRect.left) / scale
             const deltaY =
               destinationRect.top -
-              t.top -
+              targetRect.top -
               (sourceRect.top - titleRect.top) / scale
             const frames: Keyframe[] = isAccent
               ? [

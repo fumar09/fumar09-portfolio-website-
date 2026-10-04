@@ -21,7 +21,7 @@
     grid-template-rows: repeat(2, minmax(0, 1fr));
   }
   .bento__card--projects { grid-column: span 2; }
-  .bento__card--quotes   { grid-column: span 2; }
+  .bento__card--contact  { grid-column: span 2; }
 }
 
 .bento__card {
@@ -401,8 +401,22 @@
 .bento__card:hover .bento__offer-num { color: var(--orange-ink); }
 
 
-.bento__card--quotes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); column-gap: 14px; }
-.bento__card--quotes .bento__media { margin-top: 0; grid-row: 1; grid-column: 2; }
+.bento__card--contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); column-gap: 14px; }
+.bento__card--contact .bento__media { margin-top: 0; grid-row: 1; grid-column: 2; }
+.bento__contact-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  min-width: 0;
+  padding: clamp(14px, 2vw, 24px);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--orange) 10%, var(--white)), var(--white) 76%);
+}
+.bento__contact-label { color: var(--orange-ink); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.bento__contact-card strong { overflow-wrap: anywhere; color: var(--navy); font-size: clamp(12px, 1vw, 15px); font-weight: 600; }
+.bento__contact-hint { color: var(--muted); font-size: 12px; line-height: 1.45; }
 .bento__reviews {
   overflow: hidden;
   mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
@@ -450,9 +464,9 @@
   .bento__reel, .bento__reviews, .bento__fan, .bento__chips, .bento__badge { max-height: 200px; }
   .bento__fan { min-height: 150px; }
   .bento__card--projects,
-  .bento__card--quotes { display: flex; flex-direction: column; }
+  .bento__card--contact { display: flex; flex-direction: column; }
   .bento__card--projects .bento__media,
-  .bento__card--quotes .bento__media { margin-top: clamp(8px, 1.2vh, 14px); height: 190px; }
+  .bento__card--contact .bento__media { margin-top: clamp(8px, 1.2vh, 14px); min-height: 150px; }
 
 
   .bento__reel {

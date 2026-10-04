@@ -65,84 +65,67 @@ export function setTheme(theme: Theme, origin?: SweepOrigin) {
   const y = Math.max(0, Math.min(window.innerHeight, origin?.y ?? window.innerHeight / 2))
   const width = window.innerWidth
   const height = window.innerHeight
-  const waveAmplitude = Math.min(Math.max(height * 0.12, 56), 150)
-  const bandHalfWidth = Math.min(Math.max(height * 0.045, 22), 48)
-  const waveCycles = 2
-  const waveSegments = waveCycles * 4
+  const waveCount = 8
+  const waveSegments = waveCount * 4
+  const waveAmplitude = Math.min(Math.max(Math.min(width, height) * 0.09, 28), 96)
   const value = (number: number) => Number(number.toFixed(2))
   type Point = { x: number; y: number }
   type Curve = { start: Point; control1: Point; control2: Point; end: Point }
   const segment = (start: Point, control1: Point, control2: Point, end: Point): Curve =>
     ({ start, control1, control2, end })
-  const line = (start: Point, end: Point, count: number): Curve[] =>
-    Array.from({ length: count }, (_, i) => {
-      const a = i / count
-      const b = (i + 1) / count
-      const at = (t: number): Point => ({
-        x: start.x + (end.x - start.x) * t,
-        y: start.y + (end.y - start.y) * t,
-      })
-      const from = at(a)
-      const to = at(b)
-      const dx = (to.x - from.x) / 3
-      const dy = (to.y - from.y) / 3
-      return segment(from, { x: from.x + dx, y: from.y + dy }, { x: from.x + 2 * dx, y: from.y + 2 * dy }, to)
-    })
-  const wave = (edgeX: number, side: -1 | 1): Curve[] =>
-    Array.from({ length: waveSegments }, (_, i) => {
-      const t0 = i / waveSegments
-      const t1 = (i + 1) / waveSegments
-      const dt = t1 - t0
-      const at = (t: number): Point => ({
-        x: x + (edgeX - x) * t,
-        y: y + waveAmplitude * Math.sin(Math.PI * 2 * waveCycles * t) + side * bandHalfWidth * t,
-      })
-      const slope = (t: number) =>
-        waveAmplitude * Math.PI * 2 * waveCycles * Math.cos(Math.PI * 2 * waveCycles * t) + side * bandHalfWidth
-      const start = at(t0)
-      const end = at(t1)
-      const dx = (end.x - start.x) / 3
-      return segment(
-        start,
-        { x: start.x + dx, y: start.y + slope(t0) * dt / 3 },
-        { x: end.x - dx, y: end.y - slope(t1) * dt / 3 },
-        end,
-      )
-    })
-  const reverse = (curves: Curve[]): Curve[] =>
-    [...curves].reverse().map(({ start, control1, control2, end }) =>
-      segment(end, control2, control1, start))
   const point = ({ x: px, y: py }: Point) => `${value(px)} ${value(py)}`
   const pathValue = (curves: Curve[]) =>
-    `path("M ${point({ x, y })} ${curves.map(({ control1, control2, end }) =>
+    `path("M ${point(curves[0].start)} ${curves.map(({ control1, control2, end }) =>
       `C ${point(control1)}, ${point(control2)}, ${point(end)}`).join(' ')} Z")`
 
   const source = { x, y }
-  const collapsed = Array.from({ length: waveSegments * 4 + 2 }, () => segment(source, source, source, source))
-  const rightUpper = wave(width, -1)
-  const rightLower = wave(width, 1)
-  const leftLower = wave(0, 1)
-  const leftUpper = wave(0, -1)
-  const middle = [
-    ...rightUpper,
-    ...line(rightUpper[rightUpper.length - 1].end, rightLower[rightLower.length - 1].end, 1),
-    ...reverse(rightLower),
-    ...leftLower,
-    ...line(leftLower[leftLower.length - 1].end, leftUpper[leftUpper.length - 1].end, 1),
-    ...reverse(leftUpper),
+  const corners = [
+    { x: 0, y: 0 },
+    { x: width, y: 0 },
+    { x: width, y: height },
+    { x: 0, y: height },
   ]
-  const topLeft = { x: 0, y: 0 }
-  const topRight = { x: width, y: 0 }
-  const bottomRight = { x: width, y: height }
-  const bottomLeft = { x: 0, y: height }
-  const full = [
-    ...line(source, topLeft, waveSegments),
-    ...line(topLeft, topRight, 1),
-    ...line(topRight, bottomRight, waveSegments),
-    ...line(bottomRight, bottomLeft, waveSegments),
-    ...line(bottomLeft, topLeft, 1),
-    ...line(topLeft, source, waveSegments),
-  ]
+  const farthestIndex = corners.reduce((best, corner, index) => {
+    const bestDistance = Math.hypot(corners[best].x - x, corners[best].y - y)
+    const distance = Math.hypot(corner.x - x, corner.y - y)
+    return distance > bestDistance ? index : best
+  }, 0)
+  const farthest = corners[farthestIndex]
+  const maxRadius = Math.hypot(farthest.x - x, farthest.y - y)
+  const startAngle = Math.atan2(farthest.y - y, farthest.x - x)
+  const wavePoint = (angle: number, baseRadius: number): Point => {
+    const phase = angle - startAngle
+    const radius = baseRadius + waveAmplitude * Math.sin(waveCount * phase)
+    return { x: x + radius * Math.cos(angle), y: y + radius * Math.sin(angle) }
+  }
+  const waveTangent = (angle: number, baseRadius: number): Point => {
+    const phase = angle - startAngle
+    const radius = baseRadius + waveAmplitude * Math.sin(waveCount * phase)
+    const radialSlope = waveAmplitude * waveCount * Math.cos(waveCount * phase)
+    return {
+      x: radialSlope * Math.cos(angle) - radius * Math.sin(angle),
+      y: radialSlope * Math.sin(angle) + radius * Math.cos(angle),
+    }
+  }
+  const radialWave = (baseRadius: number): Curve[] =>
+    Array.from({ length: waveSegments }, (_, index) => {
+      const step = (Math.PI * 2) / waveSegments
+      const angle = startAngle + step * index
+      const nextAngle = angle + step
+      const start = wavePoint(angle, baseRadius)
+      const end = wavePoint(nextAngle, baseRadius)
+      const startTangent = waveTangent(angle, baseRadius)
+      const endTangent = waveTangent(nextAngle, baseRadius)
+      return segment(
+        start,
+        { x: start.x + startTangent.x * step / 3, y: start.y + startTangent.y * step / 3 },
+        { x: end.x - endTangent.x * step / 3, y: end.y - endTangent.y * step / 3 },
+        end,
+      )
+    })
+  const collapsed = Array.from({ length: waveSegments }, () => segment(source, source, source, source))
+  const middle = radialWave(maxRadius * 0.76)
+  const full = radialWave(maxRadius + waveAmplitude + 32)
   root.style.setProperty('--theme-wave-from', pathValue(collapsed))
   root.style.setProperty('--theme-wave-middle', pathValue(middle))
   root.style.setProperty('--theme-wave-full', pathValue(full))

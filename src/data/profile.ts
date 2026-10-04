@@ -56,5 +56,6 @@ export const profile: Profile = {
   socials: [
     { label: 'Facebook profile', href: 'https://web.facebook.com/itsyourdawgcashyy/', iconPath: '/icons/facebook.svg' },
     { label: 'Instagram profile', href: 'https://www.instagram.com/itsyourcasheny/', iconPath: '/icons/instagram.svg' },
+    { label: 'LinkedIn profile', href: 'https://www.linkedin.com/in/connie-frances-fumar-a15a69265/', iconPath: '/icons/linkedin.svg' },
   ],
 }

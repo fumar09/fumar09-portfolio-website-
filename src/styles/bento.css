@@ -21,7 +21,7 @@
     grid-template-rows: repeat(2, minmax(0, 1fr));
   }
   .bento__card--projects { grid-column: span 2; }
-  .bento__card--quotes    { grid-column: span 2; }
+  .bento__card--videos    { grid-column: span 2; }
 }
 
 .bento__card {
@@ -401,8 +401,8 @@
 .bento__card:hover .bento__offer-num { color: var(--orange-ink); }
 
 
-.bento__card--quotes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); column-gap: 14px; }
-.bento__card--quotes .bento__media { margin-top: 0; grid-row: 1; grid-column: 2; }
+.bento__card--videos { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); column-gap: 14px; }
+.bento__card--videos .bento__media { margin-top: 0; grid-row: 1; grid-column: 2; }
 .bento__reviews {
   overflow: hidden;
   mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
@@ -450,9 +450,9 @@
   .bento__reel, .bento__reviews, .bento__fan, .bento__chips, .bento__badge { max-height: 200px; }
   .bento__fan { min-height: 150px; }
   .bento__card--projects,
-  .bento__card--quotes { display: flex; flex-direction: column; }
+  .bento__card--videos { display: flex; flex-direction: column; }
   .bento__card--projects .bento__media,
-  .bento__card--quotes .bento__media { margin-top: clamp(8px, 1.2vh, 14px); height: 190px; }
+  .bento__card--videos .bento__media { margin-top: clamp(8px, 1.2vh, 14px); height: 190px; }
 
 
   .bento__reel {

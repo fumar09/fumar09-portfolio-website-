@@ -5,7 +5,7 @@ import {
   Briefcase,
   Certificate,
   FolderOpen,
-  Quotes,
+  VideoCamera,
   SealCheck,
   Stack,
   User,
@@ -120,14 +120,14 @@ export default function HomeBento() {
         </ul>
       </Link>
 
-      <Link to="/testimonials" className="bento__card bento__card--quotes">
-        <CardHead Icon={Quotes} title="Testimonials" desc="A space for feedback from people I’ve worked with." />
+      <Link to="/testimonials" className="bento__card bento__card--videos">
+        <CardHead Icon={VideoCamera} title="Videos" desc="Meet me and hear from clients through video." />
         <div className="bento__media bento__reviews" data-soon="true" aria-hidden="true">
           <div className="bento__reviews-track">
             <span className="bento__review bento__review--soon">
-              <span className="bento__review-top"><Quotes size={18} weight="duotone" /><b>Client feedback</b></span>
-              <span className="bento__review-role">A testimonial will appear here when it’s ready.</span>
-              <span className="bento__review-work">In preparation</span>
+              <span className="bento__review-top"><VideoCamera size={18} weight="duotone" /><b>Video introduction</b></span>
+              <span className="bento__review-role">Personal introduction and client stories.</span>
+              <span className="bento__review-work">Coming soon</span>
             </span>
           </div>
         </div>

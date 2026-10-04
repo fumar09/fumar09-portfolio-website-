@@ -121,13 +121,13 @@ export default function HomeBento() {
       </Link>
 
       <Link to="/testimonials" className="bento__card bento__card--videos">
-        <CardHead Icon={VideoCamera} title="Testimonials" desc="Client feedback, shared in their own words." />
+        <CardHead Icon={VideoCamera} title="Testimonials" desc="Client feedback, shared through video." />
         <div className="bento__media bento__reviews" data-soon="true" aria-hidden="true">
           <div className="bento__reviews-track">
             <span className="bento__review bento__review--soon">
-              <span className="bento__review-top"><VideoCamera size={18} weight="duotone" /><b>Client video</b></span>
-              <span className="bento__review-role">Client stories will appear here when they’re ready.</span>
-              <span className="bento__review-work">Coming soon</span>
+              <span className="bento__review-top"><VideoCamera size={18} weight="duotone" /><b>Video testimonials</b></span>
+              <span className="bento__review-role">Feedback from the people I’ve worked with.</span>
+              <span className="bento__review-work">Client stories</span>
             </span>
           </div>
         </div>

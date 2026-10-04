@@ -25,8 +25,8 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
     description: 'Professional learning, technical certifications, and creative achievements of Connie Frances Fumar.',
   },
   '/testimonials': {
-    title: 'Video Testimonials | Connie Frances Fumar',
-    description: 'Watch video testimonials from clients about Connie Frances Fumar’s IT support, web development, and UI/UX design work.',
+    title: 'Client Testimonials | Connie Frances Fumar',
+    description: 'Video testimonials from clients about Connie Frances Fumar’s IT support, web development, and UI/UX design work.',
   },
   '/about': {
     title: 'About Connie Frances Fumar | IT Support & UI/UX Designer',
